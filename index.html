@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./style.css">
+        <title>Air Attack</title>
+</head>
+
+<body>
+        <div class="front-container supporter-card">
+                <div class="game-intro card">
+                        <h1>Hi, Air Attacker Game Welcomes you!</h1>
+                        <div class="img-intro-container">
+                                <div class="img-container">
+                                        <img src="./images/jett-destroy-intro.gif" class="jet-destroy-intro">
+                                        <p>You have to destroy enemie's jets for winning this game. A jet can only be
+                                                destroyed by clicking of mouse on it. For help see the image
+                                        </p>
+                                </div>
+                                <div class="img-container">
+                                        <img src="/images/jet-escape-intro.gif" class="jet-escape-intro">
+                                        <p>You can't let the jet escape by crossing the border. If any jet crosses the
+                                                border then it will cost you a Life of yours as you can see in image,
+                                                however you are allowed to ignore atmost two jets, means if three jets
+                                                are escaped then YOUR GAME IS OVER.</p>
+                                </div>
+                        </div>
+                        <button class="start">Start</button>
+                </div>
+        </div>
+
+        <!-- <div class="restart-container supporter-card">
+                <div class="restart-game-card card">
+
+                </div>
+        </div> -->
+
+        <div class="game-container">
+                <div class="game-heading">
+                        <img src="./images/logo.jpg" class="logo">
+                        <h1>Air Attack</h1>
+                </div>
+
+                <div class="game-content">
+                        <div class="attack-field"></div>
+                        <div class="side-bar">
+                                <div class="score-field">
+                                        <div class="score">
+                                                <h1>Score -<img src="./images/fighter-jet-score.png" class="score-img">
+                                                        x <p>0</p>
+                                                </h1>
+                                        </div>
+                                        <div class="missed-score">
+                                                <h1>Missed -</h1>
+                                                <div>
+                                                        <img src="./images/missed-jet_fighter_icon.png"
+                                                                class="missed-jet-img" id="missed-img-1">
+                                                        <img src="./images/missed-jet_fighter_icon.png"
+                                                                class="missed-jet-img" id="missed-img-2">
+                                                        <img src="./images/missed-jet_fighter_icon.png"
+                                                                class="missed-jet-img" id="missed-img-3">
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="controls">
+                                        <div class="timer">
+                                                <p>00</p>
+                                        </div>
+                                        <h1>Timer</h1>
+                                        <button class="restart">Restart</button>
+                                </div>
+                        </div>
+                </div>
+                <audio src="./sounds/chiptune-grooving-142242.mp3" class="theme-sound"></audio>
+                <audio src="./sounds/mixkit-sci-fi-plasma-gun-power-up-1679.wav" class="destroy-sound">
+                </audio>
+                <audio src="./sounds/mixkit-arcade-space-shooter-dead-notification-272.wav"
+                        class="jet-escape-sound"></audio>
+                <audio src="./sounds/mixkit-funny-fail-low-tone-2876.wav" class="game-over"></audio>
+                <audio src="./sounds/mixkit-game-level-completed-2059.wav" class="game-win"></audio>
+        </div>
+
+        </div>
+        <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="bird" id="bird"></div>
+        <div class="pipes" id="pipes"></div>
+        <button class="start-button" id="start-button">Start</button>
+        <div class="score">Score: <span id="score">0</span></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const bird = document.getElementById("bird");
+            const pipes = document.getElementById("pipes");
+            const startButton = document.getElementById("start-button");
+            const scoreElement = document.getElementById("score");
+            let isGameRunning = false;
+            let birdPosition = 200;
+            let birdVelocity = 0;
+            let pipesInterval;
+            let score = 0;
+
+            function startGame() {
+                if (isGameRunning) return;
+                isGameRunning = true;
+                score = 0;
+                birdPosition = 200;
+                birdVelocity = 0;
+                pipes.innerHTML = "";
+                scoreElement.textContent = score;
+                bird.style.bottom = `${birdPosition}px`;
+
+                pipesInterval = setInterval(() => {
+                    const pipeHeight = Math.random() * 200 + 100;
+                    createPipe(pipeHeight);
+                }, 2000);
+
+                animateBird();
+            }
+
+            function endGame() {
+                clearInterval(pipesInterval);
+                isGameRunning = false;
+                alert(`Game Over! Your score is ${score}`);
+            }
+
+            function createPipe(pipeHeight) {
+                const pipe = document.createElement("div");
+                pipe.classList.add("pipe");
+                pipe.style.height = `${pipeHeight}px`;
+                pipes.appendChild(pipe);
+
+                const movePipe = setInterval(() => {
+                    const pipesLeft = parseInt(pipe.style.left);
+                    pipe.style.left = `${pipesLeft - 5}px`;
+
+                    if (pipesLeft < -50) {
+                        clearInterval(movePipe);
+                        pipes.removeChild(pipe);
+                    }
+
+                    const birdTop = birdPosition;
+                    const birdBottom = birdPosition + bird.clientHeight;
+                    const pipeTop = pipes.clientHeight - pipeHeight;
+
+                    if (pipesLeft <= 80 && pipesLeft >= 50) {
+                        if (birdTop < pipeTop || birdBottom > pipeTop + 80) {
+                            endGame();
+                        }
+                    }
+                }, 50);
+            }
+
+            function animateBird() {
+                const gravity = 1.5;
+
+                function updateBirdPosition() {
+                    birdVelocity += gravity;
+                    birdPosition -= birdVelocity;
+                    bird.style.bottom = `${birdPosition}px`;
+
+                    if (birdPosition <= 0 || birdPosition >= 400 - bird.clientHeight) {
+                        endGame();
+                    }
+
+                    const pipesArray = Array.from(document.querySelectorAll(".pipe"));
+                    pipesArray.forEach((pipe) => {
+                        const pipesLeft = parseInt(pipe.style.left);
+                        if (pipesLeft <= 80 && pipesLeft >= 50) {
+                            score++;
+                            scoreElement.textContent = score;
+                        }
+                    });
+
+                    if (isGameRunning) {
+                        requestAnimationFrame(updateBirdPosition);
+                    }
+                }
+
+                updateBirdPosition();
+            }
+
+            startButton.addEventListener("click", () => {
+                startGame();
+            });
+        });
+
+    </script>
+</body>
+
+</html>

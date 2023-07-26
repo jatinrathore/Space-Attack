@@ -1,0 +1,213 @@
+:root {
+  --primary--color: RGBA(0, 0, 0, 0.64);
+  --secondary--color: RGBA(0, 0, 0, 0.92);
+  --btn--color: lightslategray;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Amatic SC", cursive;
+  background-color: var(--primary--color);
+  user-select: none;
+}
+
+button {
+  height: 50px;
+  width: 120px;
+  border: 0;
+  outline: 0;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 10px;
+  background-color: var(--btn--color);
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+p {
+  display: inline;
+}
+
+.front-container {
+  display: flex;
+}
+
+.restart-container {
+  display: flex;
+}
+
+.supporter-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-intro {
+  height: 90%;
+  width: 80%;
+}
+
+.restart-game-card {
+  height: 90%;
+  width: 50%;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  border: 10px solid wheat;
+  position: absolute;
+  background-color: darkgray;
+  text-align: center;
+}
+
+.game-intro img {
+  height: 30vh;
+  width: 30vw;
+  border: 2px solid wheat;
+}
+
+.game-intro h1 {
+  font-size: 5rem;
+}
+
+.attack-field img {
+  height: 130px;
+  width: 130px;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+}
+
+.img-intro-container {
+  display: flex;
+}
+
+.img-intro-container div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  padding: 20px;
+  border-right: 5px solid;
+  border-left: 5px solid;
+}
+
+.img-container p {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  font-weight: 700;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.attack-field {
+  background-image: url("./images/doodle-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 70vw;
+  height: 550px;
+  border: 10px solid grey;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  filter: blur(3px);
+}
+
+.game-heading {
+  color: var(--secondary--color);
+  display: flex;
+  border: 1px solid black;
+  padding: 10px;
+  justify-content: center;
+}
+
+.logo {
+  height: 70px;
+  width: 90px;
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  border-radius: 20px;
+}
+
+.game-heading h1 {
+  font-size: 50px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.game-content {
+  display: flex;
+  margin-left: 0;
+}
+
+.side-bar {
+  color: var(--secondary--color);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 100;
+}
+
+.score-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score img {
+  margin-left: 35px;
+  height: 5rem;
+  width: 5rem;
+}
+
+.missed-score {
+  display: flex;
+}
+
+.missed-score img {
+  margin-left: 20px;
+  transition: all 0.5s;
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.timer {
+  height: 20rem;
+  width: 20rem;
+  border: 5px solid black;
+  border-radius: 50%;
+  font-size: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

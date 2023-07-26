@@ -1,0 +1,7 @@
+1 -> timer based game - 30 sec --done
+2 -> implement random jets coming out in div -- done
+3 -> destroy function on clicking --done
+4 -> implement a score bar how many are destroyed --done
+5 -> implement a homie jett who should not be destroyed
+6 -> expand the mode from timer to elimination of 1 homie or missing of three enemies
+7 -> desgining
