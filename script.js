@@ -1,8 +1,12 @@
 const gameContainer = document.querySelector(".game-container");
+const frontContainer = document.querySelector(".front-container");
+const restartContainer = document.querySelector(".restart-container");
 const attackField = document.querySelector(".attack-field");
 const restartBtn = document.querySelector(".restart");
 const startBtn = document.querySelector(".start");
+const homeRestartBtn = document.querySelector(".home-btn");
 const points = document.querySelector(".score p");
+const restartCardPoint = document.querySelector(".game-over-heading p");
 const missedJets = document.querySelectorAll(".missed-jet-img");
 const stopwatch = document.querySelector(".timer p");
 const themeSound = document.querySelector(".theme-sound");
@@ -10,22 +14,29 @@ const jetDestroySound = document.querySelector(".destroy-sound");
 const jetEscapeSound = document.querySelector(".jet-escape-sound");
 const gameOverSound = document.querySelector(".game-over");
 const gameWinSound = document.querySelector(".game-win");
-const frontContainer = document.querySelector(".front-container");
+const tryAgainText = document.querySelector(".try-again-text");
 
-let gameInterval;
-let score = 0,
-  missed;
+let gameInterval, missed;
+let score = 0;
+
 const gameDuration = 60;
 
 themeSound.volume = 0.6;
 
-restartBtn.addEventListener("click", restartGame);
+restartBtn.addEventListener("click", onClickRestartBtn);
 startBtn.addEventListener("click", onClickStartBtn);
+homeRestartBtn.addEventListener("click", restartGame);
 
 function onClickStartBtn() {
   frontContainer.style.display = "none";
   gameContainer.style.filter = "none";
   startGame();
+}
+
+function onClickRestartBtn() {
+  restartContainer.style.display = "none";
+  gameContainer.style.filter = "none";
+  restartGame();
 }
 
 function getPositions() {
@@ -54,11 +65,6 @@ function moveJet(jet) {
     jet.style.left = `${currentLeft + speed}px`;
 
     if (currentLeft >= attackField.clientWidth) {
-      if (missed === 3) {
-        themeSound.pause();
-        gameOverSound.play();
-        stopGame(gameInterval);
-      }
       // Check if the jet is still part of jetsContainer before removing it
       if (jet.parentNode === attackField) {
         attackField.removeChild(jet);
@@ -68,10 +74,46 @@ function moveJet(jet) {
           playJetEscapeSound();
           missedJets[2 - missed].style.opacity = "0";
           missed++;
+
+          if (missed === 3) {
+            showRestartCard();
+            gameOver();
+          }
         }
       }
     }
   }, 10);
+}
+
+function gameOver() {
+  stopGame(gameInterval);
+  themeSound.pause();
+  gameOverSound.play();
+  console.log("helllo");
+}
+
+function showRestartCard() {
+  restartCardPoint.textContent = score;
+  gameContainer.style.filter = "blur(10px)";
+  restartContainer.style.display = "flex";
+
+  intervalId = setInterval(updateTimer, 1000);
+  // setTimeout(() => {
+  //   restartBtn.disabled = false;
+  // }, 5000);
+}
+
+let timeLeft = 5;
+let intervalId;
+
+function updateTimer() {
+  if (timeLeft > 0) {
+    timeLeft--;
+    tryAgainText.textContent = `Try Again in ${timeLeft} seconds`;
+  } else {
+    restartBtn.disabled = false;
+    clearInterval(intervalId);
+  }
 }
 
 function startGame() {
@@ -84,8 +126,9 @@ function startGame() {
       timer--;
       stopwatch.textContent = `${timer}`;
     } else {
-      stopGame(gameInterval);
+      showRestartCard();
       gameWinSound.play();
+      stopGame(gameInterval);
     }
   }, 1000);
 }
@@ -100,6 +143,8 @@ function destroyJet(jet) {
 }
 
 function restartGame() {
+  score = 0;
+  points.textContent = "0";
   if (gameInterval) {
     clearInterval(gameInterval);
     stopwatch.textContent = "00";

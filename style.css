@@ -46,7 +46,7 @@ p {
 }
 
 .restart-container {
-  display: flex;
+  display: none;
 }
 
 .supporter-card {
