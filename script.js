@@ -178,6 +178,7 @@ function destroyJet(jet) {
 function restartGame() {
   score = 0;
   points.textContent = "0";
+  themeSound.currentTime = 1;
   if (gameInterval) {
     clearInterval(gameInterval);
     stopwatch.textContent = "00";
