@@ -16,10 +16,10 @@ const gameOverSound = document.querySelector(".game-over");
 const gameWinSound = document.querySelector(".game-win");
 const tryAgainText = document.querySelector(".try-again-text");
 
-let gameInterval, missed;
-let score = 0;
-
-const gameDuration = 60;
+let gameInterval, missed, intervalId;
+let score = 0,
+  timeLeft = 3;
+const gameDuration = 10;
 
 themeSound.volume = 0.6;
 
@@ -89,7 +89,9 @@ function gameOver() {
   stopGame(gameInterval);
   themeSound.pause();
   gameOverSound.play();
-  console.log("helllo");
+  tryAgainText.textContent = `Play Again in 3 seconds`;
+  timeLeft = 3;
+  restartBtn.disabled = true;
 }
 
 function showRestartCard() {
@@ -97,19 +99,13 @@ function showRestartCard() {
   gameContainer.style.filter = "blur(10px)";
   restartContainer.style.display = "flex";
 
-  intervalId = setInterval(updateTimer, 1000);
-  // setTimeout(() => {
-  //   restartBtn.disabled = false;
-  // }, 5000);
+  intervalId = setInterval(updateRestartTimer, 1000);
 }
 
-let timeLeft = 5;
-let intervalId;
-
-function updateTimer() {
+function updateRestartTimer() {
   if (timeLeft > 0) {
     timeLeft--;
-    tryAgainText.textContent = `Try Again in ${timeLeft} seconds`;
+    tryAgainText.textContent = `Play Again in ${timeLeft} seconds`;
   } else {
     restartBtn.disabled = false;
     clearInterval(intervalId);
