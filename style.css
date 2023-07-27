@@ -77,6 +77,23 @@ p {
   text-align: center;
 }
 
+.game-over-img {
+  margin-top: 20px;
+  height: 40vh;
+  width: 25vw;
+}
+
+.game-over-heading {
+  margin-top: 20px;
+  font-size: 5rem;
+  text-decoration: underline;
+}
+
+.try-again-text {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
 .game-intro img {
   height: 30vh;
   width: 30vw;
