@@ -26,6 +26,8 @@ let score = 0,
   isSoundOn = true;
 const gameDuration = 60;
 
+let timer = gameDuration;
+
 restartBtn.addEventListener("click", onClickRestartBtn);
 startBtn.addEventListener("click", onClickStartBtn);
 homeRestartBtn.addEventListener("click", restartGame);
@@ -76,7 +78,7 @@ function createJet() {
 }
 
 function moveJet(jet) {
-  const speed = Math.random() * 4 + 2;
+  const speed = computeSpeed(timer);
   const moveJet = setInterval(() => {
     const currentLeft = parseInt(jet.style.left);
     jet.style.left = `${currentLeft + speed}px`;
@@ -100,6 +102,24 @@ function moveJet(jet) {
       }
     }
   }, 10);
+}
+
+function computeSpeed(speedTimer) {
+  let computedSpeed;
+  let min = 2,
+    max = 2;
+
+  if (speedTimer <= gameDuration - 10) {
+    max = 3;
+  }
+  if (speedTimer <= gameDuration - 40) {
+    min = 3;
+    max = 4;
+  }
+  console.log(min, max);
+  computedSpeed = Math.random() * max + min;
+
+  return computedSpeed;
 }
 
 function gameOver() {
@@ -130,7 +150,7 @@ function updateRestartTimer() {
 }
 
 function startGame() {
-  let timer = gameDuration;
+  timer = gameDuration;
   themeSound.play();
   missed = 0;
   gameInterval = setInterval(() => {
