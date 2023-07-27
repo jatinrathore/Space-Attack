@@ -2,7 +2,7 @@ const gameContainer = document.querySelector(".game-container");
 const attackField = document.querySelector(".attack-field");
 const restartBtn = document.querySelector(".restart");
 const startBtn = document.querySelector(".start");
-const points = document.querySelector("p");
+const points = document.querySelector(".score p");
 const missedJets = document.querySelectorAll(".missed-jet-img");
 const stopwatch = document.querySelector(".timer p");
 const themeSound = document.querySelector(".theme-sound");
@@ -92,8 +92,8 @@ function startGame() {
 
 function destroyJet(jet) {
   jet.addEventListener("click", () => {
-    score++;
     playDestroySound();
+    score++;
     points.textContent = score;
     attackField.removeChild(jet);
   });
