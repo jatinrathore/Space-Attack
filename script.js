@@ -5,27 +5,44 @@ const attackField = document.querySelector(".attack-field");
 const restartBtn = document.querySelector(".restart");
 const startBtn = document.querySelector(".start");
 const homeRestartBtn = document.querySelector(".home-btn");
-const points = document.querySelector(".score p");
-const restartCardPoint = document.querySelector(".game-over-heading p");
-const missedJets = document.querySelectorAll(".missed-jet-img");
-const stopwatch = document.querySelector(".timer p");
+const soundBtn = document.querySelector(".sound-btn");
+const soundOn = document.querySelector(".sound-on");
+const soundOff = document.querySelector(".sound-off");
+const allSounds = document.querySelectorAll("audio");
 const themeSound = document.querySelector(".theme-sound");
 const jetDestroySound = document.querySelector(".destroy-sound");
 const jetEscapeSound = document.querySelector(".jet-escape-sound");
 const gameOverSound = document.querySelector(".game-over");
 const gameWinSound = document.querySelector(".game-win");
+const points = document.querySelector(".score p");
+const restartCardPoint = document.querySelector(".game-over-heading p");
+const missedJets = document.querySelectorAll(".missed-jet-img");
+const stopwatch = document.querySelector(".timer p");
 const tryAgainText = document.querySelector(".try-again-text");
 
 let gameInterval, missed, intervalId;
 let score = 0,
-  timeLeft = 3;
-const gameDuration = 10;
-
-themeSound.volume = 0.6;
+  timeLeft = 3,
+  isSoundOn = true;
+const gameDuration = 60;
 
 restartBtn.addEventListener("click", onClickRestartBtn);
 startBtn.addEventListener("click", onClickStartBtn);
 homeRestartBtn.addEventListener("click", restartGame);
+soundBtn.addEventListener("click", onClickSoundBtn);
+
+function onClickSoundBtn() {
+  if (isSoundOn) {
+    soundOn.style.display = "none";
+    soundOff.style.display = "block";
+    allSounds.forEach((sound) => (sound.volume = 0.0));
+  } else {
+    soundOn.style.display = "block";
+    soundOff.style.display = "none";
+    allSounds.forEach((sound) => (sound.volume = 1.0));
+  }
+  isSoundOn = !isSoundOn;
+}
 
 function onClickStartBtn() {
   frontContainer.style.display = "none";

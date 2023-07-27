@@ -228,3 +228,20 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+.sound-btn {
+  width: 60px;
+}
+
+.game-sound-img {
+  height: 50px;
+  width: 50px;
+}
+
+.sound-on {
+  display: block;
+}
+
+.sound-off {
+  display: none;
+}
