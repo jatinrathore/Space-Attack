@@ -19,6 +19,7 @@ const restartCardPoint = document.querySelector(".game-over-heading p");
 const missedJets = document.querySelectorAll(".missed-jet-img");
 const stopwatch = document.querySelector(".timer p");
 const tryAgainText = document.querySelector(".try-again-text");
+const gameHeadingContainer = document.querySelector(".game-heading");
 
 let gameInterval, missed, intervalId;
 let score = 0,
@@ -60,7 +61,10 @@ function onClickRestartBtn() {
 
 function getPositions() {
   const containerHeight = gameContainer.clientHeight;
-  const randomY = Math.random() * (containerHeight - 300);
+  const jetHeight = 130;
+  const randomY =
+    Math.random() *
+    (containerHeight - (jetHeight + gameHeadingContainer.clientHeight + 20));
   return { x: gameContainer.offsetLeft, y: randomY };
 }
 
@@ -116,7 +120,6 @@ function computeSpeed(speedTimer) {
     min = 3;
     max = 4;
   }
-  console.log(min, max);
   computedSpeed = Math.random() * max + min;
 
   return computedSpeed;

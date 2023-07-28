@@ -25,11 +25,11 @@ body {
 }
 
 button {
-  height: 50px;
-  width: 120px;
+  height: 5rem;
+  width: 12rem;
   border: 0;
   outline: 0;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-weight: 700;
   border-radius: 10px;
   background-color: var(--btn--color);
@@ -39,6 +39,14 @@ button {
 
 p {
   display: inline;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
 }
 
 .front-container {
@@ -78,20 +86,19 @@ p {
 }
 
 .game-over-img {
-  margin-top: 20px;
+  margin-top: 2rem;
   height: 40vh;
   width: 25vw;
 }
 
 .game-over-heading {
-  margin-top: 20px;
-  font-size: 5rem;
+  margin-top: 2rem;
   text-decoration: underline;
 }
 
 .try-again-text {
-  margin-top: 20px;
-  font-size: 30px;
+  margin-top: 2rem;
+  font-size: 3rem;
 }
 
 .game-intro img {
@@ -100,13 +107,9 @@ p {
   border: 2px solid wheat;
 }
 
-.game-intro h1 {
-  font-size: 5rem;
-}
-
 .attack-field img {
-  height: 130px;
-  width: 130px;
+  height: 13rem;
+  width: 13rem;
   position: absolute;
   cursor: pointer;
   user-select: none;
@@ -128,7 +131,7 @@ p {
 
 .img-container p {
   font-size: 1.8rem;
-  margin-top: 20px;
+  margin-top: 2rem;
   font-weight: 700;
   text-align: justify;
   text-justify: inter-word;
@@ -140,7 +143,7 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
   width: 70vw;
-  height: 550px;
+  height: 55rem;
   border: 10px solid grey;
   position: relative;
   overflow: hidden;
@@ -162,8 +165,8 @@ p {
 }
 
 .logo {
-  height: 70px;
-  width: 90px;
+  height: 7rem;
+  width: 9rem;
   position: absolute;
   left: 10px;
   top: 8px;
@@ -171,7 +174,6 @@ p {
 }
 
 .game-heading h1 {
-  font-size: 50px;
   font-weight: 700;
   text-decoration: underline;
 }
@@ -195,7 +197,7 @@ p {
 }
 
 .score img {
-  margin-left: 35px;
+  margin-left: 3.5rem;
   height: 5rem;
   width: 5rem;
 }
@@ -205,7 +207,7 @@ p {
 }
 
 .missed-score img {
-  margin-left: 20px;
+  margin-left: 2rem;
   transition: all 0.5s;
   height: 4.5rem;
   width: 4.5rem;
