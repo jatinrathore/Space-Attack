@@ -134,6 +134,7 @@ function computeSpeed(speedTimer) {
     }
   } else {
     if (speedTimer <= gameDuration - 10) {
+      min = 2.8;
       max = 3;
     }
     if (speedTimer <= gameDuration - 40) {
