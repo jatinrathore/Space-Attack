@@ -21,9 +21,9 @@ const stopwatch = document.querySelector(".timer p");
 const tryAgainText = document.querySelector(".try-again-text");
 const gameHeadingContainer = document.querySelector(".game-heading");
 
-let gameInterval, missed, intervalId;
+let gameInterval, missed, intervalId, jetProp;
 let score = 0,
-  timeLeft = 3,
+  timeLeft = 4,
   isSoundOn = true;
 const gameDuration = 60;
 
@@ -61,21 +61,29 @@ function onClickRestartBtn() {
 
 function getPositions() {
   const containerHeight = gameContainer.clientHeight;
-  const jetHeight = 130;
+  const jetHeight = jetProp.clientHeight;
   const randomY =
     Math.random() *
     (containerHeight - (jetHeight + gameHeadingContainer.clientHeight + 20));
+  console.log(containerHeight, randomY);
   return { x: gameContainer.offsetLeft, y: randomY };
 }
+
+attackField.addEventListener("click", (e) => {
+  console.log(e);
+});
 
 function createJet() {
   const jet = document.createElement("img");
   jet.src = "./images/fighterjet.png";
 
+  //getting the of jet(image) for finding out randomY in getPositions()
+  attackField.appendChild(jet);
+  jetProp = jet;
+
   const { x, y } = getPositions();
   jet.style.left = `${x}px`;
   jet.style.top = `${y}px`;
-  attackField.appendChild(jet);
 
   destroyJet(jet);
   moveJet(jet);
@@ -129,8 +137,8 @@ function gameOver() {
   stopGame(gameInterval);
   themeSound.pause();
   gameOverSound.play();
-  tryAgainText.textContent = `Play Again in 3 seconds`;
-  timeLeft = 3;
+  tryAgainText.textContent = `Play Again in 4 seconds`;
+  timeLeft = 4;
   restartBtn.disabled = true;
 }
 

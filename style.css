@@ -29,7 +29,7 @@ button {
   width: 12rem;
   border: 0;
   outline: 0;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   border-radius: 10px;
   background-color: var(--btn--color);
@@ -47,6 +47,25 @@ h1 {
 
 h2 {
   font-size: 2.5rem;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 1441px) {
+  h1 {
+    font-size: 9rem;
+  }
+
+  h2 {
+    font-size: 4.8rem;
+  }
+
+  button {
+    height: 10rem;
+    width: 25rem;
+    font-size: 5rem;
+    margin-top: 3rem;
+    border-radius: 20px;
+  }
 }
 
 .front-container {
@@ -83,12 +102,20 @@ h2 {
   position: absolute;
   background-color: darkgray;
   text-align: center;
+  overflow: scroll;
 }
 
 .game-over-img {
   margin-top: 2rem;
   height: 40vh;
   width: 25vw;
+}
+
+@media screen and (min-width: 1441px) {
+  .game-over-img {
+    height: 48vh;
+    width: 30vw;
+  }
 }
 
 .game-over-heading {
@@ -99,6 +126,11 @@ h2 {
 .try-again-text {
   margin-top: 2rem;
   font-size: 3rem;
+}
+@media screen and (min-width: 1441px) {
+  .try-again-text {
+    font-size: 5rem;
+  }
 }
 
 .game-intro img {
@@ -115,11 +147,18 @@ h2 {
   user-select: none;
 }
 
+@media screen and (min-width: 1441px) {
+  .attack-field img {
+    height: 22rem;
+    width: 22rem;
+  }
+}
+
 .img-intro-container {
   display: flex;
 }
 
-.img-intro-container div {
+.img-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -129,12 +168,26 @@ h2 {
   border-left: 5px solid;
 }
 
+.img-container img {
+  height: 30vh;
+  width: 30vw;
+}
+
 .img-container p {
   font-size: 1.8rem;
   margin-top: 2rem;
   font-weight: 700;
   text-align: justify;
-  text-justify: inter-word;
+}
+
+@media screen and (min-width: 1441px) {
+  .img-container img {
+    height: 35vh;
+  }
+
+  .img-container p {
+    font-size: 3.2rem;
+  }
 }
 
 .attack-field {
@@ -143,7 +196,7 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
   width: 70vw;
-  height: 55rem;
+  height: 85vh;
   border: 10px solid grey;
   position: relative;
   overflow: hidden;
@@ -153,7 +206,7 @@ h2 {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  filter: blur(3px);
+  /* filter: blur(3px); */
 }
 
 .game-heading {
@@ -168,9 +221,17 @@ h2 {
   height: 7rem;
   width: 9rem;
   position: absolute;
-  left: 10px;
-  top: 8px;
-  border-radius: 20px;
+  left: 1rem;
+  top: 0.8rem;
+  border-radius: 2rem;
+}
+
+@media screen and (min-width: 1441px) {
+  .logo {
+    height: 12rem;
+    width: 15rem;
+    border-radius: 3rem;
+  }
 }
 
 .game-heading h1 {
@@ -202,6 +263,13 @@ h2 {
   width: 5rem;
 }
 
+@media screen and (min-width: 1441px) {
+  .score img {
+    height: 10rem;
+    width: 10rem;
+  }
+}
+
 .missed-score {
   display: flex;
 }
@@ -213,11 +281,19 @@ h2 {
   width: 4.5rem;
 }
 
+@media screen and (min-width: 1441px) {
+  .missed-score img {
+    height: 9rem;
+    width: 9rem;
+  }
+}
+
 .controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 5rem;
+  text-align: center;
 }
 
 .timer {
@@ -231,13 +307,38 @@ h2 {
   align-items: center;
 }
 
+@media screen and (min-width: 1441px) {
+  .timer {
+    height: 38rem;
+    width: 38rem;
+    font-size: 12rem;
+    border: 10px solid black;
+  }
+}
+
+.home-btn {
+  display: block;
+}
+
 .sound-btn {
-  width: 60px;
+  width: 6rem;
 }
 
 .game-sound-img {
-  height: 50px;
-  width: 50px;
+  height: 5rem;
+  width: 5rem;
+}
+
+@media screen and (min-width: 1441px) {
+  .sound-btn {
+    width: 10rem;
+    text-align: center;
+  }
+
+  .game-sound-img {
+    height: 8rem;
+    width: 8.5rem;
+  }
 }
 
 .sound-on {
@@ -246,4 +347,231 @@ h2 {
 
 .sound-off {
   display: none;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  button {
+    height: 4rem;
+    width: 10rem;
+    font-size: 2rem;
+  }
+
+  .img-container img {
+    height: 30vh;
+  }
+
+  .img-container p {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    height: 6rem;
+    width: 8rem;
+  }
+
+  .sound-btn {
+    width: 5rem;
+  }
+
+  .game-sound-img {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  button {
+    height: 3.5rem;
+    width: 9rem;
+    font-size: 1.8rem;
+  }
+
+  .attack-field img {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .img-container img {
+    height: 25vh;
+  }
+
+  .img-container p {
+    font-size: 1.4rem;
+  }
+
+  .logo {
+    height: 5rem;
+    width: 7rem;
+    border-radius: 1.2rem;
+  }
+
+  .sound-btn {
+    width: 4rem;
+  }
+
+  .game-sound-img {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .score img {
+    height: 4rem;
+    width: 4rem;
+    margin-left: 2rem;
+  }
+
+  .missed-score img {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin-left: 1rem;
+  }
+
+  .timer {
+    height: 16rem;
+    width: 16rem;
+    font-size: 4rem;
+  }
+
+  .try-again-text {
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  button {
+    height: 2.5rem;
+    width: 7rem;
+    font-size: 1.3rem;
+  }
+
+  .game-content {
+    flex-direction: column;
+  }
+
+  .attack-field {
+    height: 50vh;
+    width: 100%;
+  }
+
+  .attack-field img {
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .side-bar {
+    flex-direction: row;
+  }
+
+  .score-field {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .score img {
+    height: 3.2rem;
+    width: 3.5rem;
+    margin-left: 1.8rem;
+  }
+
+  .missed-score img {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin-left: 1rem;
+  }
+
+  .controls {
+    margin-top: 0;
+    flex: 1;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .controls button {
+    margin-top: 1rem;
+  }
+
+  .timer {
+    margin-top: 1rem;
+    height: 12rem;
+    width: 12rem;
+    font-size: 3rem;
+    border: 2px solid black;
+  }
+
+  .sound-btn {
+    width: 3rem;
+    border-radius: 0.5rem;
+  }
+
+  .game-sound-img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .img-container {
+    padding: 10px;
+    border-right: 2px solid;
+    border-left: 2px solid;
+  }
+
+  .img-container img {
+    height: 22vh;
+  }
+
+  .img-container p {
+    font-size: 1.1rem;
+  }
+
+  .try-again-text {
+    font-size: 1.5rem;
+  }
+
+  .game-over-img {
+    width: 35vw;
+  }
+
+  .logo {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 1rem;
+    left: 0.3rem;
+    top: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .timer {
+    height: 8.5rem;
+    width: 8.5rem;
+    font-size: 2.5rem;
+  }
 }
