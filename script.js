@@ -29,6 +29,8 @@ const gameDuration = 60;
 
 let timer = gameDuration;
 
+let gameWon;
+
 restartBtn.addEventListener("click", onClickRestartBtn);
 startBtn.addEventListener("click", onClickStartBtn);
 homeRestartBtn.addEventListener("click", restartGame);
@@ -60,18 +62,14 @@ function onClickRestartBtn() {
 }
 
 function getPositions() {
-  const containerHeight = gameContainer.clientHeight;
+  const containerHeight = attackField.clientHeight;
   const jetHeight = jetProp.clientHeight;
-  const randomY =
-    Math.random() *
-    (containerHeight - (jetHeight + gameHeadingContainer.clientHeight + 20));
-  console.log(containerHeight, randomY);
+  const max = containerHeight - jetHeight;
+  const min = gameHeadingContainer.clientHeight + jetHeight;
+  const randomY = Math.random() * max - min + min;
+
   return { x: gameContainer.offsetLeft, y: randomY };
 }
-
-attackField.addEventListener("click", (e) => {
-  console.log(e);
-});
 
 function createJet() {
   const jet = document.createElement("img");
@@ -102,7 +100,9 @@ function moveJet(jet) {
         clearInterval(moveJet);
 
         if (missed < 3) {
-          playJetEscapeSound();
+          if (!gameWon) {
+            playJetEscapeSound();
+          }
           missedJets[2 - missed].style.opacity = "0";
           missed++;
 
@@ -121,13 +121,27 @@ function computeSpeed(speedTimer) {
   let min = 2,
     max = 2;
 
-  if (speedTimer <= gameDuration - 10) {
-    max = 3;
+  if (attackField.clientWidth < 1026) {
+    min = 1.2;
+    max = 1.2;
+    if (speedTimer <= gameDuration - 10) {
+      min = 1.5;
+      max = 1.9;
+    }
+    if (speedTimer <= gameDuration - 40) {
+      min = 2.3;
+      max = 2.5;
+    }
+  } else {
+    if (speedTimer <= gameDuration - 10) {
+      max = 3;
+    }
+    if (speedTimer <= gameDuration - 40) {
+      min = 3;
+      max = 4;
+    }
   }
-  if (speedTimer <= gameDuration - 40) {
-    min = 3;
-    max = 4;
-  }
+
   computedSpeed = Math.random() * max + min;
 
   return computedSpeed;
@@ -136,7 +150,9 @@ function computeSpeed(speedTimer) {
 function gameOver() {
   stopGame(gameInterval);
   themeSound.pause();
-  gameOverSound.play();
+  if (!gameWon) {
+    gameOverSound.play();
+  }
   tryAgainText.textContent = `Play Again in 4 seconds`;
   timeLeft = 4;
   restartBtn.disabled = true;
@@ -161,6 +177,7 @@ function updateRestartTimer() {
 }
 
 function startGame() {
+  gameWon = false;
   timer = gameDuration;
   themeSound.play();
   missed = 0;
@@ -170,6 +187,7 @@ function startGame() {
       timer--;
       stopwatch.textContent = `${timer}`;
     } else {
+      gameWon = true;
       showRestartCard();
       gameWinSound.play();
       stopGame(gameInterval);

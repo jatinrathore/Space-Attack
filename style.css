@@ -102,7 +102,6 @@ h2 {
   position: absolute;
   background-color: darkgray;
   text-align: center;
-  overflow: scroll;
 }
 
 .game-over-img {
@@ -206,7 +205,7 @@ h2 {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* filter: blur(3px); */
+  filter: blur(3px);
 }
 
 .game-heading {
@@ -403,8 +402,8 @@ h2 {
   }
 
   .attack-field img {
-    height: 10rem;
-    width: 10rem;
+    height: 9rem;
+    width: 9rem;
   }
 
   .img-container img {
@@ -573,5 +572,14 @@ h2 {
     height: 8.5rem;
     width: 8.5rem;
     font-size: 2.5rem;
+  }
+
+  .missed-score img {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .game-intro {
+    overflow: scroll;
   }
 }
