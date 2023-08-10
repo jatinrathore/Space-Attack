@@ -122,7 +122,6 @@ function computeSpeed(speedTimer) {
     max = 2;
 
   if (attackField.clientWidth < 520) {
-    console.log("Low speed");
     min = 1.2;
     max = 1.2;
     if (speedTimer <= gameDuration - 10) {
@@ -134,8 +133,6 @@ function computeSpeed(speedTimer) {
       max = 2.5;
     }
   } else {
-    console.log("High speed");
-
     if (speedTimer <= gameDuration - 10) {
       min = 2.5;
       max = 3;
