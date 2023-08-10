@@ -118,10 +118,11 @@ function moveJet(jet) {
 
 function computeSpeed(speedTimer) {
   let computedSpeed;
-  let min = 2,
+  let min = 1.5,
     max = 2;
 
-  if (attackField.clientWidth < 1026) {
+  if (attackField.clientWidth < 520) {
+    console.log("Low speed");
     min = 1.2;
     max = 1.2;
     if (speedTimer <= gameDuration - 10) {
@@ -133,8 +134,10 @@ function computeSpeed(speedTimer) {
       max = 2.5;
     }
   } else {
+    console.log("High speed");
+
     if (speedTimer <= gameDuration - 10) {
-      min = 2.8;
+      min = 2.5;
       max = 3;
     }
     if (speedTimer <= gameDuration - 40) {
