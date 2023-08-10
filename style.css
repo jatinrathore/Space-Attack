@@ -88,6 +88,7 @@ h2 {
 .game-intro {
   height: 90%;
   width: 80%;
+  overflow-y: scroll;
 }
 
 .restart-game-card {
