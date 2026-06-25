@@ -4,100 +4,266 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="icon" type="image/x-icon" href="./images/logo.jpg">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <!-- Styles -->
         <link rel="stylesheet" href="./style.css">
-        <title>Space Attack</title>
+        <title>Space Attack: Retro Arcade</title>
 </head>
 
 <body>
-        <div class="front-container supporter-card">
-                <div class="game-intro card">
-                        <h1>Hi, Space-Attack Game Welcomes you!</h1>
-                        <div class="img-intro-container">
-                                <div class="img-container">
-                                        <img src="./images/jett-destroy-intro.gif" class="jet-destroy-intro">
-                                        <p>You have to destroy enemie's jets for winning this game. A jet can only be
-                                                destroyed by clicking of mouse on it. For help see the image
-                                        </p>
+        <!-- Animated Starfield Canvas -->
+        <canvas id="starfield-bg"></canvas>
+
+        <!-- Achievements Toaster Container -->
+        <div id="achievement-toaster"></div>
+
+        <!-- Main Screen Shell -->
+        <div class="app-shell">
+                <!-- Retro Glassmorphic Header -->
+                <header class="game-header">
+                        <div class="header-logo-title">
+                                <img src="./images/logo.jpg" class="logo" alt="Space Attack Logo">
+                                <span class="game-title">SPACE ATTACK</span>
+                        </div>
+                        <div class="header-stats">
+                                <div class="header-stat-box score-box">
+                                        <span class="stat-label">SCORE</span>
+                                        <span class="stat-val" id="header-score">0000</span>
                                 </div>
-                                <div class="img-container">
-                                        <img src="/images/jet-escape-intro.gif" class="jet-escape-intro">
-                                        <p>You can't let the jet escape by crossing the border. If any jet crosses the
-                                                border then it will cost you a Life of yours as you can see in image,
-                                                however you are allowed to ignore atmost two jets, means if three jets
-                                                are escaped then YOUR GAME IS OVER.</p>
+                                <div class="header-stat-box highscore-box">
+                                        <span class="stat-label">HIGH SCORE</span>
+                                        <span class="stat-val" id="header-highscore">0000</span>
                                 </div>
                         </div>
-                        <button class="start">Start</button>
-                </div>
-        </div>
+                        <div class="header-controls">
+                                <button class="action-btn text-btn" id="header-meme-btn" aria-label="Toggle Faaah Mode">
+                                        😂 Faaah Mode
+                                </button>
+                                <button class="action-btn" id="header-pause-btn" aria-label="Pause Game">
+                                        <svg viewBox="0 0 24 24" class="btn-icon" width="24" height="24">
+                                                <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                        </svg>
+                                </button>
+                                <button class="action-btn" id="header-sound-btn" aria-label="Toggle Sound">
+                                        <!-- Sound On Icon -->
+                                        <svg viewBox="0 0 24 24" class="btn-icon sound-on-icon" width="24" height="24">
+                                                <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                        </svg>
+                                        <!-- Sound Off Icon -->
+                                        <svg viewBox="0 0 24 24" class="btn-icon sound-off-icon hidden" width="24" height="24">
+                                                <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                                        </svg>
+                                </button>
+                        </div>
+                </header>
 
-        <div class="restart-container supporter-card">
-                <div class="restart-game-card card">
-                        <img src="/images/new-game-over.png" class="game-over-img">
-                        <h1 class="game-over-heading">Score - <p>00</p>
-                        </h1>
-                        <p class="try-again-text">Play Again in 4 seconds</p>
-                        <button class="restart" disabled>Restart</button>
-                </div>
-        </div>
-
-        <div class="game-container">
-                <div class="game-heading">
-                        <img src="./images/logo.jpg" class="logo">
-                        <h1>Space Attack</h1>
-                </div>
-
-                <div class="game-content">
-                        <div class="attack-field"></div>
-                        <div class="side-bar">
-                                <div class="score-field">
-                                        <div class="score">
-                                                <h2>Score -<img src="./images/fighter-jet-score.png" class="score-img">
-                                                        x <p>0</p>
-                                                </h2>
-                                        </div>
-                                        <div class="missed-score">
-                                                <h2>Missed -</h2>
-                                                <div>
-                                                        <img src="./images/missed-jet_fighter_icon.png"
-                                                                class="missed-jet-img" id="missed-img-1">
-                                                        <img src="./images/missed-jet_fighter_icon.png"
-                                                                class="missed-jet-img" id="missed-img-2">
-                                                        <img src="./images/missed-jet_fighter_icon.png"
-                                                                class="missed-jet-img" id="missed-img-3">
+                <main class="game-body">
+                        <!-- Play Zone Wrapper -->
+                        <div class="play-zone">
+                                <div class="attack-field">
+                                        <!-- Paused Overlay Screen -->
+                                        <div class="pause-overlay hidden" id="pause-screen">
+                                                <div class="pause-card">
+                                                        <h2 class="neon-text">HYPERSPACE PAUSE</h2>
+                                                        <p class="pause-hint">Press [P] or click below to return to action</p>
+                                                        <div class="overlay-buttons">
+                                                                <button class="menu-btn primary-glow" id="resume-btn">RESUME</button>
+                                                                <button class="menu-btn secondary-glow" id="pause-restart-btn">RESTART</button>
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>
-                                <div class="controls">
-                                        <div>
-                                                <div class="timer">
-                                                        <p>00</p>
-                                                </div>
-                                                <h2>Timer</h2>
+                        </div>
+
+                        <!-- Right HUD Panel -->
+                        <aside class="hud-dashboard">
+                                <!-- Level / Difficulty -->
+                                <div class="hud-card glass-panel" id="difficulty-card">
+                                        <span class="hud-title">SYSTEM LEVEL</span>
+                                        <span class="hud-value neon-blue-text" id="hud-difficulty">MEDIUM</span>
+                                </div>
+
+                                <!-- Timer Radial Indicator -->
+                                <div class="hud-card glass-panel timer-hud-card">
+                                        <div class="radial-timer-container">
+                                                <svg class="progress-ring" width="120" height="120">
+                                                        <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                                        <circle class="progress-ring__circle" stroke="var(--accent-purple)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                                </svg>
+                                                <div class="timer-countdown" id="hud-timer">60</div>
                                         </div>
-                                        <div>
-                                                <button class="home-btn">Restart</button>
-                                                <button class="sound-btn">
-                                                        <img src="/images/audio-speaker-on.png"
-                                                                class="game-sound-img sound-on">
-                                                        <img src="/images/mute.png" class="game-sound-img sound-off">
-                                                </button>
+                                        <span class="hud-title margin-top-sm">TIME REMAINING</span>
+                                </div>
+
+                                <!-- Shield / Missed Jets Indicator -->
+                                <div class="hud-card glass-panel">
+                                        <span class="hud-title">SHIELD HEALTH</span>
+                                        <div class="shield-health-bar">
+                                                <div class="shield-segment" id="shield-1"></div>
+                                                <div class="shield-segment" id="shield-2"></div>
+                                                <div class="shield-segment" id="shield-3"></div>
+                                        </div>
+                                        <span class="shield-status-text" id="shield-health-label">SHIELDS MAXIMUM</span>
+                                </div>
+
+                                <!-- Combo Tracker -->
+                                <div class="hud-card glass-panel combo-card" id="hud-combo-card">
+                                        <span class="hud-title">COMBO MULTIPLIER</span>
+                                        <div class="combo-display">
+                                                <span class="combo-number" id="hud-combo">1x</span>
+                                                <div class="combo-progress-bar">
+                                                        <div class="combo-progress-fill" id="hud-combo-fill"></div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Detailed Stats -->
+                                <div class="hud-card glass-panel stats-card">
+                                        <span class="hud-title">COMBAT STATISTICS</span>
+                                        <div class="stats-row">
+                                                <span>Jets Destroyed:</span>
+                                                <strong id="hud-destroyed-count">0</strong>
+                                        </div>
+                                        <div class="stats-row">
+                                                <span>Missed Threats:</span>
+                                                <strong id="hud-missed-count">0 / 3</strong>
+                                        </div>
+                                        <div class="stats-row">
+                                                <span>Accuracy:</span>
+                                                <strong id="hud-accuracy">100%</strong>
+                                        </div>
+                                </div>
+                        </aside>
+                </main>
+        </div>
+
+        <!-- Welcome Modal overlay -->
+        <div class="modal-overlay" id="welcome-modal">
+                <div class="glass-modal welcome-card">
+                        <div class="welcome-header">
+                                <h1 class="neon-title text-glow">SPACE ATTACK</h1>
+                                <p class="welcome-tagline">ARCADE SIMULATOR 2026</p>
+                        </div>
+
+                        <!-- Instructions Section -->
+                        <div class="instructions-tabs">
+                                <div class="tab-headers">
+                                        <button class="tab-btn active" data-tab="objective">OBJECTIVE</button>
+                                        <button class="tab-btn" data-tab="controls">CONTROLS</button>
+                                        <button class="tab-btn" data-tab="rules">RULES</button>
+                                </div>
+                                <div class="tab-contents">
+                                        <div class="tab-pane active" id="tab-objective">
+                                                <div class="pane-content">
+                                                        <img src="./images/jett-destroy-intro.gif" class="intro-gif" alt="Fighter jet destruction tutorial">
+                                                        <p>Infiltrating fighter jets are entering your sector. You must locate and destroy them instantly. Touch or Click directly on the jets to blast them into cosmic dust.</p>
+                                                </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab-controls">
+                                                <div class="pane-content">
+                                                        <ul class="intro-list">
+                                                                <li><strong>Mouse Click / Tap:</strong> Shoot down incoming jets</li>
+                                                                <li><strong>[P] Key:</strong> Pause/Resume game</li>
+                                                                <li><strong>Fast Clicks:</strong> Build combos for high scores!</li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab-rules">
+                                                <div class="pane-content">
+                                                        <img src="./images/jet-escape-intro.gif" class="intro-gif" alt="Fighter jet escaping tutorial">
+                                                        <p>If any jet slips through your defense field and crosses the screen border, your shields take critical damage. If <strong>three jets</strong> escape, your fighter ship is destroyed and game is over!</p>
+                                                </div>
                                         </div>
                                 </div>
                         </div>
+
+                        <!-- Difficulty Selection Section -->
+                        <div class="difficulty-section">
+                                <h3>SELECT DIFFICULTY LEVEL</h3>
+                                <div class="difficulty-options">
+                                        <button class="diff-btn" data-diff="Easy">EASY</button>
+                                        <button class="diff-btn active" data-diff="Medium">MEDIUM</button>
+                                        <button class="diff-btn" data-diff="Hard">HARD</button>
+                                </div>
+                        </div>
+
+                        <!-- Audio Settings Section -->
+                        <div class="audio-settings-panel">
+                                <h3>AUDIO SYSTEMS</h3>
+                                <div class="audio-toggles">
+                                        <button class="audio-toggle-btn active" id="modal-audio-btn">
+                                                🔊 Master Sound: ON
+                                        </button>
+                                        <button class="audio-toggle-btn active" id="modal-meme-btn">
+                                                😂 Faaah Mode: ON
+                                        </button>
+                                </div>
+                        </div>
+
+                        <button class="launch-btn" id="start-game-btn">LAUNCH MISSION</button>
                 </div>
-                <audio src="./sounds/chiptune-grooving-142242.mp3" class="theme-sound"></audio>
-                <audio src="./sounds/mixkit-sci-fi-plasma-gun-power-up-1679.wav" class="destroy-sound">
-                </audio>
-                <audio src="./sounds/mixkit-arcade-space-shooter-dead-notification-272.wav"
-                        class="jet-escape-sound"></audio>
-                <audio src="./sounds/game-over-38511.mp3" class="game-over"></audio>
-                <audio src="./sounds/mixkit-game-level-completed-2059.wav" class="game-win"></audio>
         </div>
 
+        <!-- Game Over Modal overlay -->
+        <div class="modal-overlay hidden" id="gameover-modal">
+                <div class="glass-modal gameover-card">
+                        <h1 id="gameover-title" class="neon-red-text">MISSION ENDED</h1>
+                        
+                        <div class="gameover-score-wrap">
+                                <span class="score-label">FINAL SCORE</span>
+                                <span class="score-number" id="gameover-final-score">0000</span>
+                                <div class="new-record-badge hidden" id="new-record-badge">NEW HIGH SCORE</div>
+                        </div>
+
+                        <!-- Statistics Grid -->
+                        <div class="stats-grid">
+                                <div class="stat-card">
+                                        <span class="stat-card-lbl">Destroyed</span>
+                                        <span class="stat-card-val" id="go-destroyed">0</span>
+                                </div>
+                                <div class="stat-card">
+                                        <span class="stat-card-lbl">Accuracy</span>
+                                        <span class="stat-card-val" id="go-accuracy">0%</span>
+                                </div>
+                                <div class="stat-card">
+                                        <span class="stat-card-lbl">Max Combo</span>
+                                        <span class="stat-card-val" id="go-maxcombo">1x</span>
+                                </div>
+                                <div class="stat-card">
+                                        <span class="stat-card-lbl">Difficulty</span>
+                                        <span class="stat-card-val" id="go-difficulty">Medium</span>
+                                </div>
+                        </div>
+
+                        <!-- Achievements Unlocked during current run -->
+                        <div class="unlocked-achievements-section hidden" id="unlocked-achievements-container">
+                                <h3>ACHIEVEMENTS EARNED</h3>
+                                <div class="achievements-list-row" id="unlocked-achievements-list">
+                                        <!-- Dynamically inserted badges -->
+                                </div>
+                        </div>
+
+                        <div class="game-over-actions">
+                                <button class="menu-btn primary-glow" id="gameover-retry-btn">REDEPLOY</button>
+                                <button class="menu-btn secondary-glow" id="gameover-menu-btn">RETURN TO MENU</button>
+                        </div>
+                </div>
         </div>
+
+        <!-- Preloaded Sounds -->
+        <audio src="./sounds/chiptune-grooving-142242.mp3" class="theme-sound" loop></audio>
+        <audio src="./sounds/mixkit-sci-fi-plasma-gun-power-up-1679.wav" class="destroy-sound"></audio>
+        <audio src="./sounds/mixkit-arcade-space-shooter-dead-notification-272.wav" class="jet-escape-sound"></audio>
+        <audio src="./sounds/game-over-38511.mp3" class="game-over"></audio>
+        <audio src="./sounds/mixkit-game-level-completed-2059.wav" class="game-win"></audio>
+        <audio src="./sounds/mixkit-laser-weapon-shot-1681.wav" class="button-click-sound"></audio>
+        <audio src="./sounds/faaah.mp3" class="faaah-sound"></audio>
+
+        <!-- Scripts -->
         <script src="./script.js"></script>
 </body>
 
